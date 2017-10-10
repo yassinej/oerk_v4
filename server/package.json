@@ -1,0 +1,33 @@
+{
+	"name": "oerk_server",
+	"version": "1.0.0",
+	"description": "OERK Express Server implementing OAUTH2 and a series of APIs",
+	"main": "index.js",
+	"scripts": {
+		"server": "nodemon index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yassinej/oerk_v4.git"
+	},
+	"keywords": [
+		"express",
+		"oauth2",
+		"routing",
+		"middleware"
+	],
+	"author": "JazyLabs",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/yassinej/oerk_v4/issues"
+	},
+	"homepage": "https://github.com/yassinej/oerk_v4#readme",
+	"dependencies": {
+		"body-parser": "^1.18.2",
+		"express": "^4.16.2",
+		"mongoose": "^4.12.1"
+	},
+	"devDependencies": {
+		"nodemon": "^1.12.1"
+	}
+}
