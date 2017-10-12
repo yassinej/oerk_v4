@@ -11,15 +11,22 @@ const keys = require('./config/keys');
 
 //Importing all data models and services
 require('./models/User');
+require('./models/Item');
+require('./models/Review');
+require('./models/Backpack');
 require('./services/passport')(passport);
 
 //Variables
 const port = keys.port;
+//const seedDB = require('./services/seed');
 const app = express();
 
 //DB connection
 mongoose.connect(keys.mongoURI, { useMongoClient: true });
 mongoose.Promise = global.Promise;
+
+//Seeding DB
+//seedDB();
 
 //Middleware use
 app.use(cookieParser()); // read cookies (needed for auth)

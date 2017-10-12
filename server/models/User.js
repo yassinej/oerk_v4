@@ -3,10 +3,12 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const userSchema = mongoose.Schema({
+	name: String,
 	googleId: String,
 	googleToken: String,
 	googleEmail: String,
-	name: String,
+	facebookId: String,
+	facebookToken: String,
 	avatar: String
 });
 
