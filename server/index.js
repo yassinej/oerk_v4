@@ -47,7 +47,10 @@ app.use(passport.session());
 app.get('/', function(req, res) {
 	res.status(200).json({ hello: 'There' });
 });
-require('./routes/authRoutes')(app, passport);
+require('./routes/userRoutes')(app, passport);
+require('./routes/itemRoutes')(app);
+require('./routes/reviewRoutes')(app);
+require('./routes/backpackRoutes')(app);
 
 //Starting Server
 app.listen(port, function() {

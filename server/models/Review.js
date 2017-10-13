@@ -13,7 +13,7 @@ const reviewSchema = mongoose.Schema({
 	},
 	content: String,
 	stars: Number,
-	reviewDate: { type: Date, default: Date.now }
+	reviewDate: { type: Date, default: Date.now, index: true }
 });
 
 mongoose.model('review', reviewSchema);

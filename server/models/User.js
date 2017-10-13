@@ -9,7 +9,8 @@ const userSchema = mongoose.Schema({
 	googleEmail: String,
 	facebookId: String,
 	facebookToken: String,
-	avatar: String
+	avatar: String,
+	isAdmin: { type: Boolean, default: false }
 });
 
 mongoose.model('users', userSchema);
