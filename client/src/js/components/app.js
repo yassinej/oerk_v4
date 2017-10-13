@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Router, Route, Link, withRouter } from 'react-router-dom';
 import history from '../helpers/history';
 
-import NavHeading from './NavHeading';
+import NavHeading from './Nav/NavHeading';
 import Landing from './Landing';
 import ItemList from './ItemList';
 

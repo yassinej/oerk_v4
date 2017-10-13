@@ -4,7 +4,11 @@ import * as actions from '../actions';
 
 class ItemList extends Component {
 	render() {
-		return <div>Items from DB</div>;
+		return (
+			<div>
+				<h1>Items List</h1>
+			</div>
+		);
 	}
 }
 function mapStateToProps(state) {
