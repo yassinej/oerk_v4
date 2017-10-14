@@ -6,6 +6,7 @@ import imageURL from '../../assets/backpack.png';
 class ItemList extends Component {
 	componentWillMount() {
 		this.props.fetchItems();
+		//console.log('ItemList_props', this.props);
 	}
 	renderItems() {
 		if (!this.props.items) {
@@ -15,7 +16,7 @@ class ItemList extends Component {
 			return <h3>Loading Items...</h3>;
 		}
 		return this.props.items.map(item => {
-			return this.render(item);
+			return this.renderItem(item);
 		});
 	}
 	renderItem(item) {
@@ -27,6 +28,7 @@ class ItemList extends Component {
 					float: 'left',
 					width: '180px'
 				}}
+				key={item._id}
 			>
 				<img
 					src={imageURL}
@@ -34,13 +36,13 @@ class ItemList extends Component {
 					height="200"
 					style={{
 						width: '100%',
-						height: auto
+						height: 'auto'
 					}}
 				/>
 				<div
 					style={{
 						padding: '15px',
-						textAlign: center
+						textAlign: 'center'
 					}}
 				>
 					{item.name}

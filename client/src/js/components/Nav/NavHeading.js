@@ -3,18 +3,23 @@ import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import * as actions from '../../actions';
 import logo from '../../../assets/backpack.png';
+
 class NavHeading extends Component {
+	componentDidMount() {
+		this.props.fetchUser();
+		//console.log('NavHeading_props', this.props);
+	}
 	renderLogin() {
 		if (!this.props.user) {
 			return (
 				<button>
-					<Link to="/auth/google">SignIn with Google</Link>
+					<a href="/auth/google">SignIn with Google</a>
 				</button>
 			);
 		}
 		return (
 			<button>
-				<Link to="/api/signout">SignOut</Link>
+				<a href="/api/logout">SignOut</a>
 			</button>
 		);
 	}
