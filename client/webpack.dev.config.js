@@ -47,6 +47,14 @@ module.exports = {
 	devServer: {
 		historyApiFallback: {
 			disableDotRule: true
-		}
+		},
+		proxy: [
+			{
+				context: ['/auth', '/api'],
+				target: 'http://localhost:5000/',
+				secure: false,
+				changeOrigin: true
+			}
+		]
 	}
 };

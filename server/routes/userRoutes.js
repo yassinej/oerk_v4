@@ -14,10 +14,7 @@ module.exports = (app, passport) => {
 		passport.authenticate('google'),
 		(req, res) => {
 			if (req.user) {
-				res.json({
-					Login: 'Succeded',
-					user: req.user
-				});
+				res.redirect('/items');
 			} else {
 				res.json({
 					Login: 'Failed'

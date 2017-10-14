@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
-
+const cors = require('cors');
 //Local ressources Import
 const keys = require('./config/keys');
 
@@ -29,6 +29,7 @@ mongoose.Promise = global.Promise;
 //seedDB();
 
 //Middleware use
+app.use(cors());
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));
