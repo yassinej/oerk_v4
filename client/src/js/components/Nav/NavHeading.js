@@ -5,10 +5,6 @@ import * as actions from '../../actions';
 import logo from '../../../assets/backpack.png';
 
 class NavHeading extends Component {
-	componentDidMount() {
-		this.props.fetchUser();
-		//console.log('NavHeading_props', this.props);
-	}
 	renderLogin() {
 		if (!this.props.user) {
 			return (
@@ -18,9 +14,16 @@ class NavHeading extends Component {
 			);
 		}
 		return (
-			<button>
-				<a href="/api/logout">SignOut</a>
-			</button>
+			<div>
+				<ul>
+					<li>
+						<NavLink to="/backpack">{this.props.user.name} Backpack</NavLink>
+					</li>
+				</ul>
+				<button>
+					<a href="/api/logout">SignOut</a>
+				</button>
+			</div>
 		);
 	}
 	render() {

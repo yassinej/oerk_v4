@@ -4,8 +4,8 @@ import * as actions from '../actions';
 import imageURL from '../../assets/backpack.png';
 
 class ItemList extends Component {
-	componentWillMount() {
-		this.props.fetchItems();
+	componentDidMount() {
+		if (!this.props.items.fetched) this.props.fetchItems();
 		//console.log('ItemList_props', this.props);
 	}
 	renderItems() {

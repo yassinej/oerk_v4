@@ -1,2 +1,10 @@
 export const FETCH_USER = 'fetch_user';
 export const FETCH_ITEMS = 'fetch_items';
+export const FETCH_BACKPACK = 'fetch_backpack';
+export const ADD_ITEM_TO_BACKPACK = 'add_item_from_backpack';
+export const DEL_ITEM_FROM_BACKPACK = 'del_item_from_backpack';
+export const REMOVE_ITEM_FROM_BACKPACK = 'remove_item_from_backpack';
+export const RECALCULATE_TOTAL_PRICE = 'recalculate_totalprice';
+export const DISCARD_BACKPACK = 'discard_backpack';
+export const SAVE_BACKPACK = 'save_backpack';
+export const CHECKOUT_BACKPACK = 'checkout_backpack';
