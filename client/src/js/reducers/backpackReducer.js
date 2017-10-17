@@ -7,7 +7,10 @@ import {
 	RECALCULATE_TOTAL_PRICE,
 	DISCARD_BACKPACK,
 	SAVE_BACKPACK,
-	CHECKOUT_BACKPACK
+	CHECKOUT_BACKPACK,
+	BACKPACK_IS_LOADING,
+	BACKPACK_HAS_ERRORED,
+	FETCH_BACKPACK_SUCCESS
 } from '../actions/types';
 
 function addItem(backpack, id) {
@@ -53,11 +56,6 @@ export default function(state = {}, action) {
 	let updatedState;
 
 	switch (action.type) {
-		case FETCH_BACKPACK:
-			action.payload.fetched = true;
-			//console.log('backpackReducer_FETCHBACKPACK', action);
-			return action.payload;
-
 		case ADD_ITEM_TO_BACKPACK:
 			//console.log('backpackReducer_ADD_ITEM_TBACKPACK');
 			updatedState = addItem(state, action.payload);
@@ -83,6 +81,9 @@ export default function(state = {}, action) {
 		case CHECKOUT_BACKPACK:
 			console.log('backpackReducer_CHECKOUT_BACKPACK', action.payload);
 			return state;
+		case FETCH_BACKPACK_SUCCESS:
+			console.log('backpackReducer_FETCH_BACKPACK_SUCCESS', action);
+			return action.backpack;
 		default:
 			return state;
 	}

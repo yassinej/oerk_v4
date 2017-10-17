@@ -1,9 +1,6 @@
 import axios from 'axios';
 
 import {
-	FETCH_USER,
-	FETCH_ITEMS,
-	FETCH_BACKPACK,
 	ADD_ITEM_TO_BACKPACK,
 	DEL_ITEM_FROM_BACKPACK,
 	REMOVE_ITEM_FROM_BACKPACK,
@@ -16,42 +13,18 @@ import {
 	FETCH_BACKPACK_SUCCESS
 } from './types';
 
-export const fetchItems = () => async dispatch => {
-	//console.log('_action_fetchItems_Getting Items');
-	//const res = await axios.get('/api/items');
-	//console.log('_action_fetchItems_Got Items', res.data);
-	//dispatch({ type: FETCH_ITEMS, payload: res.data });
-	//console.log('_action_fetchItems_state', getState());
-
-	dispatch(BackpackIsLoading(true));
-	const res = await axios.get('/api/items');
-	dispatch(BackpackIsLoading(false));
-	if (!res.data) {
-		dispatch(BackpackHasErrored(true));
-	}
-	console.log('_action_fetchItems_Got items ', res.data);
-	dispatch(FetchBackpackSuccess(res.data));
-};
-
-export const fetchUser = () => async dispatch => {
-	//console.log('_action_fetchUser_Getting user');
-	const res = await axios.get('/api/current_user');
-	//console.log('_action_fetchUser_Got user', res.data);
-	dispatch({ type: FETCH_USER, payload: res.data });
-};
-
 export const fetchBackpack = () => async (dispatch, getState) => {
 	console.log('_action_fetchBackpack_state', getState());
 	const state = getState();
 	const id = state.user._id;
-	dispatch(IsLoading(true));
+	dispatch(BackpackIsLoading(true));
 	const res = await axios.get(`/api/backpacks/user/${id}`);
-	dispatch(IsLoading(false));
+	dispatch(BackpackIsLoading(false));
 	if (!res.data.backpack) {
-		dispatch(HasErrored(true));
+		dispatch(BackpackHasErrored(true));
 	}
 	console.log('_action_fetchBackpack_Got user backpack', res.data.backpack);
-	dispatch(FetchDataSuccess(res.data.backpack));
+	dispatch(FetchBackpackSuccess(res.data.backpack));
 	//dispatch({ type: FETCH_BACKPACK, payload: res.data.backpack });
 };
 
@@ -98,14 +71,14 @@ export const checkoutBackpack = id => dispatch => {
 };
 export function BackpackHasErrored(bool) {
 	return {
-		type: HAS_ERRORED,
+		type: BACKPACK_HAS_ERRORED,
 		hasErrored: bool
 	};
 }
 
 export function BackpackIsLoading(bool) {
 	return {
-		type: IS_LOADING,
+		type: BACKPACK_IS_LOADING,
 		isLoading: bool
 	};
 }
@@ -114,24 +87,5 @@ export function FetchBackpackSuccess(backpack) {
 	return {
 		type: FETCH_BACKPACK_SUCCESS,
 		backpack
-	};
-}
-export function ItemsHasErrored(bool) {
-	return {
-		type: HAS_ERRORED,
-		hasErrored: bool
-	};
-}
-
-export function ItemsIsLoading(bool) {
-	return {
-		type: IS_LOADING,
-		isLoading: bool
-	};
-}
-export function FetchItemsSuccess(items) {
-	return {
-		type: FETCH_ITEMS_SUCCESS,
-		items
 	};
 }

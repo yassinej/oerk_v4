@@ -7,7 +7,7 @@ import Landing from './Landing';
 import ItemList from './ItemList';
 import Backpack from './Backpack';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../actions/userActions';
 //Allows NavBar to access Location. Useful for Active class
 const LocatedNavHeading = withRouter(NavHeading);
 

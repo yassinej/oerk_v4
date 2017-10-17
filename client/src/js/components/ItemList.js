@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from '../actions/itemsActions';
 import imageURL from '../../assets/backpack.png';
 
 class ItemList extends Component {
@@ -60,6 +60,10 @@ class ItemList extends Component {
 	}
 }
 function mapStateToProps(state) {
-	return { items: state.items };
+	return {
+		items: state.items,
+		isLoading: state.isLoading,
+		hasErrored: state.hasErrored
+	};
 }
 export default connect(mapStateToProps, actions)(ItemList);
