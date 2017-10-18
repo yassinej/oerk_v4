@@ -10,7 +10,8 @@ import {
 	CHECKOUT_BACKPACK,
 	BACKPACK_IS_LOADING,
 	BACKPACK_HAS_ERRORED,
-	FETCH_BACKPACK_SUCCESS
+	FETCH_BACKPACK_SUCCESS,
+	BACKPACK_LOADED
 } from './types';
 
 export const fetchBackpack = () => async (dispatch, getState) => {
@@ -25,6 +26,7 @@ export const fetchBackpack = () => async (dispatch, getState) => {
 	}
 	console.log('_action_fetchBackpack_Got user backpack', res.data.backpack);
 	dispatch(FetchBackpackSuccess(res.data.backpack));
+	dispatch(BackpackLoaded(true));
 	//dispatch({ type: FETCH_BACKPACK, payload: res.data.backpack });
 };
 
@@ -82,7 +84,12 @@ export function BackpackIsLoading(bool) {
 		isLoading: bool
 	};
 }
-
+export function BackpackLoaded(bool) {
+	return {
+		type: BACKPACK_LOADED,
+		loaded: { backpackLoaded: bool }
+	};
+}
 export function FetchBackpackSuccess(backpack) {
 	return {
 		type: FETCH_BACKPACK_SUCCESS,

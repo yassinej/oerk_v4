@@ -1,18 +1,9 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/backpackActions';
+//import * as actions from '../actions/backpackActions';
 
 class Backpack extends Component {
-	// componentWillReceiveProps(nextProps) {
-	// 	console.log('nextProps', nextProps);
-	// 	if (nextProps.user._id && !nextProps.backpack._id)
-	// 		this.props.fetchBackpack();
-	// }
-	componentDidMount() {
-		console.log('DidMount');
-		if (this.props.user._id) this.props.fetchBackpack();
-	}
 	handleAddItem(id) {
 		this.props.addItemToBackpack(id);
 	}
@@ -138,4 +129,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps, actions)(Backpack);
+export default connect(mapStateToProps)(Backpack);

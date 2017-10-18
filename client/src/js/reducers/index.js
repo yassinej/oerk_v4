@@ -3,6 +3,7 @@ import itemReducer from './itemReducer';
 import userReducer from './userReducer';
 import backpackReducer from './backpackReducer';
 import isLoading from './dataHandling/IsLoadingReducer';
+import loaded from './dataHandling/loadedReducer';
 import hasErrored from './dataHandling/HasErroredReducer';
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
 	items: itemReducer,
 	backpack: backpackReducer,
 	isLoading: isLoading,
+	loaded: loaded,
 	hasErrored: hasErrored
 });
 

@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/itemsActions';
+//import * as actions from '../actions/itemsActions';
 import imageURL from '../../assets/backpack.png';
 
 class ItemList extends Component {
-	componentDidMount() {
-		if (!this.props.items.fetched) this.props.fetchItems();
-		//console.log('ItemList_props', this.props);
-	}
 	renderItems() {
 		if (!this.props.items) {
 			return <h3>Empty Items DB...</h3>;
@@ -66,4 +62,4 @@ function mapStateToProps(state) {
 		hasErrored: state.hasErrored
 	};
 }
-export default connect(mapStateToProps, actions)(ItemList);
+export default connect(mapStateToProps)(ItemList);
