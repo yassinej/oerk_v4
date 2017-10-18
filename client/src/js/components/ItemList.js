@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/itemsActions';
+import * as actions from '../actions/backpackActions';
 import imageURL from '../../assets/backpack.png';
 
 class ItemList extends Component {
+	handlePlusOne(id) {
+		this.props.addItemToBackpack(id);
+	}
+	handleMinusOne(id) {
+		this.props.delItemFromBackpack(id);
+	}
+	handleBinOne(id) {
+		this.props.removeItemFromBackpack(id);
+	}
 	renderItems() {
 		if (!this.props.items) {
 			return <h3>Empty Items DB...</h3>;
@@ -41,7 +50,21 @@ class ItemList extends Component {
 						textAlign: 'center'
 					}}
 				>
-					{item.name}
+					<h3>{item.name}</h3>
+					<div>
+						<button onClick={this.handlePlusOne.bind(this, item._id)}>
+							{' '}
+							+{' '}
+						</button>
+						<button onClick={this.handleMinusOne.bind(this, item._id)}>
+							{' '}
+							-{' '}
+						</button>
+						<button onClick={this.handleBinOne.bind(this, item._id)}>
+							{' '}
+							bin{' '}
+						</button>
+					</div>
 				</div>
 			</div>
 		);
@@ -58,6 +81,7 @@ class ItemList extends Component {
 function mapStateToProps(state) {
 	return {
 		items: state.items,
+		backpack: state.backpack,
 		isLoading: state.isLoading,
 		hasErrored: state.hasErrored
 	};

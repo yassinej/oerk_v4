@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/backpackActions';
 
 class Backpack extends Component {
+	componentDidMount() {
+		this.props.recalcutateTotalPrice();
+	}
 	handleAddItem(id) {
 		this.props.addItemToBackpack(id);
 	}
@@ -108,7 +111,7 @@ class Backpack extends Component {
 		}
 	}
 	render() {
-		console.log('render', this.props);
+		//console.log('render', this.props);
 		return (
 			<div>
 				<h4>{this.props.user.name}'s Backpack</h4>

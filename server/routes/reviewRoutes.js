@@ -41,7 +41,7 @@ module.exports = app => {
 		Authentication.requireLogin,
 		async (req, res) => {
 			const id = req.params.id;
-			console.log('Id is:', id);
+			//console.log('Id is:', id);
 			try {
 				const deletedReview = await Review.remove({ _id: id });
 				if (!deletedReview)
@@ -58,7 +58,7 @@ module.exports = app => {
 		Authentication.requireLogin,
 		async (req, res) => {
 			const id = req.params.review_id;
-			console.log('review_id is:', id);
+			//console.log('review_id is:', id);
 			try {
 				const fetchedReview = await Review.find({ review_id: id });
 				if (!fetchedReview)
@@ -78,7 +78,7 @@ module.exports = app => {
 		Authentication.requireLogin,
 		async (req, res) => {
 			const id = req.params.item_id;
-			console.log('item_id is:', id);
+			//console.log('item_id is:', id);
 			try {
 				const fetchedReviews = await Review.find({ item_id: id });
 				if (!fetchedReviews)
@@ -98,7 +98,7 @@ module.exports = app => {
 		Authentication.requireLogin,
 		async (req, res) => {
 			const id = req.params.item_id;
-			console.log('item_id is:', id);
+			//console.log('item_id is:', id);
 			try {
 				const fetchedReviews = await Review.find({ user_id: id });
 				if (!fetchedReviews)

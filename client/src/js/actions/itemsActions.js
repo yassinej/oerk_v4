@@ -14,7 +14,7 @@ export const fetchItems = () => async dispatch => {
 	if (!res.data) {
 		dispatch(ItemsHasErrored(true));
 	}
-	console.log('_action_fetchItems_Got items ', res.data);
+	//console.log('_action_fetchItems_Got items ', res.data);
 	dispatch(FetchItemsSuccess(res.data));
 	dispatch(ItemsLoaded(true));
 };

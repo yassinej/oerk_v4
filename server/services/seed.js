@@ -65,17 +65,17 @@ function seedDB() {
 	//Remove all items
 	Item.remove({}, err => {
 		if (err) {
-			console.log(err);
+			//console.log(err);
 		}
-		console.log('All items removed !');
+		//console.log('All items removed !');
 		//add a few items
 		items.forEach(seed => {
 			Item.create(seed, (err, item) => {
 				if (err) {
-					console.log(err);
+					//console.log(err);
 				} else {
 					itemBackup.push(item.id);
-					console.log('Item added');
+					//console.log('Item added');
 					Review.create(
 						{
 							user_id: '59df7a4ce75d7378308b766f',
@@ -85,18 +85,18 @@ function seedDB() {
 						},
 						(err, review) => {
 							if (err) {
-								console.log(err);
+								//console.log(err);
 							} else {
 								item.reviews.push(review);
 								item.save();
-								console.log('Created new review');
+								//console.log('Created new review');
 							}
 						}
 					);
 				}
 			});
 		});
-		console.log(itemBackup);
+		//console.log(itemBackup);
 	});
 	const backpacks = [
 		{
@@ -151,12 +151,12 @@ function seedDB() {
 		}
 	];
 	Backpack.remove({}, err => {
-		if (err) console.log(err);
-		console.log('all backpacks removed!!');
+		if (err) //console.log(err);
+		//console.log('all backpacks removed!!');
 		backpacks.forEach(seed => {
 			Backpack.create(seed, (err, backpack) => {
-				if (err) console.log(err);
-				else console.log('Backpack added');
+				if (err) //console.log(err);
+				else //console.log('Backpack added');
 			});
 		});
 	});

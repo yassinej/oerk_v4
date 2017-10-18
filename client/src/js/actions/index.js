@@ -29,7 +29,7 @@ export const fetchItems = () => async dispatch => {
 	if (!res.data) {
 		dispatch(BackpackHasErrored(true));
 	}
-	console.log('_action_fetchItems_Got items ', res.data);
+	//console.log('_action_fetchItems_Got items ', res.data);
 	dispatch(FetchBackpackSuccess(res.data));
 };
 
@@ -41,7 +41,7 @@ export const fetchUser = () => async dispatch => {
 };
 
 export const fetchBackpack = () => async (dispatch, getState) => {
-	console.log('_action_fetchBackpack_state', getState());
+	//console.log('_action_fetchBackpack_state', getState());
 	const state = getState();
 	const id = state.user._id;
 	dispatch(IsLoading(true));
@@ -50,7 +50,7 @@ export const fetchBackpack = () => async (dispatch, getState) => {
 	if (!res.data.backpack) {
 		dispatch(HasErrored(true));
 	}
-	console.log('_action_fetchBackpack_Got user backpack', res.data.backpack);
+	//console.log('_action_fetchBackpack_Got user backpack', res.data.backpack);
 	dispatch(FetchDataSuccess(res.data.backpack));
 	//dispatch({ type: FETCH_BACKPACK, payload: res.data.backpack });
 };
@@ -79,12 +79,12 @@ export const recalcutateTotalPrice = () => (dispatch, getState) => {
 	});
 };
 export const discardBackpack = id => async dispatch => {
-	console.log('_action_discardBackpack');
+	//console.log('_action_discardBackpack');
 	const res = await axios.get(`/api/backpacks/${id}/del`);
 	dispatch({ type: DISCARD_BACKPACK, payload: res });
 };
 export const saveBackpack = backpack => async dispatch => {
-	console.log('_action_saveBackpack');
+	//console.log('_action_saveBackpack');
 	const res = await axios.post(
 		`/api/backpacks/${backpack._id}/update`,
 		backpack
@@ -92,7 +92,7 @@ export const saveBackpack = backpack => async dispatch => {
 	dispatch({ type: SAVE_BACKPACK, payload: res });
 };
 export const checkoutBackpack = id => dispatch => {
-	console.log('_action_checkoutBackpack');
+	//console.log('_action_checkoutBackpack');
 	const res = 'checked out';
 	dispatch({ type: CHECKOUT_BACKPACK, payload: res });
 };

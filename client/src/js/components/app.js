@@ -15,7 +15,7 @@ const LocatedNavHeading = withRouter(NavHeading);
 
 class App extends Component {
 	componentWillReceiveProps(nextProps) {
-		console.log('nextprops ', nextProps);
+		//console.log('nextprops ', nextProps);
 		if (
 			nextProps.loaded.userLoaded &&
 			nextProps.loaded.itemsLoaded &&

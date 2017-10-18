@@ -14,7 +14,7 @@ export const fetchUser = () => async dispatch => {
 	if (!res.data) {
 		dispatch(UserHasErrored(true));
 	}
-	console.log('_action_fetchUser_Got user ', res.data);
+	//console.log('_action_fetchUser_Got user ', res.data);
 	dispatch(FetchUserSuccess(res.data));
 	dispatch(UserLoaded(true));
 };

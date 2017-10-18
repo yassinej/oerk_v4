@@ -23,15 +23,15 @@ export default function(state = {}, action) {
 	let updatedState;
 	switch (action.type) {
 		case BACKPACK_LOADED:
-			console.log('LoadedReducer_BACKPACK', action);
+			//console.log('LoadedReducer_BACKPACK', action);
 			updatedState = backpackLoaded(state);
 			return updatedState;
 		case ITEMS_LOADED:
-			console.log('LoadedReducer_ITEMS', action);
+			//console.log('LoadedReducer_ITEMS', action);
 			updatedState = itemsLoaded(state);
 			return updatedState;
 		case USER_LOADED:
-			console.log('LoadedReducer_USER', action);
+			//console.log('LoadedReducer_USER', action);
 			updatedState = userLoaded(state);
 			return updatedState;
 		default:

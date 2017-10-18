@@ -37,7 +37,7 @@ module.exports = app => {
 		Authentication.requireAdmin,
 		async (req, res) => {
 			const id = req.params.id;
-			console.log('Id is:', id);
+			//console.log('Id is:', id);
 			try {
 				const deletedItem = await Item.remove({ _id: id });
 				if (!deletedItem)
@@ -55,7 +55,7 @@ module.exports = app => {
 		Authentication.requireAdmin,
 		async (req, res) => {
 			const id = req.params.id;
-			console.log('Id is:', id);
+			//console.log('Id is:', id);
 			try {
 				const fetchedItem = await Item.findOne({ _id: id });
 				if (!fetchedItem)

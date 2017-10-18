@@ -2,6 +2,7 @@ import _ from 'lodash';
 import {
 	FETCH_BACKPACK,
 	ADD_ITEM_TO_BACKPACK,
+	ADD_EXISTINGITEM_TO_BACKPACK,
 	DEL_ITEM_FROM_BACKPACK,
 	REMOVE_ITEM_FROM_BACKPACK,
 	RECALCULATE_TOTAL_PRICE,
@@ -13,7 +14,14 @@ import {
 	FETCH_BACKPACK_SUCCESS
 } from '../actions/types';
 
-function addItem(backpack, id) {
+function addItem(backpack, item) {
+	let bItems = backpack.items;
+	bItems = [...bItems, item];
+	return Object.assign({}, backpack, {
+		items: bItems
+	});
+}
+function addExistingItem(backpack, id) {
 	const bItems = backpack.items;
 	bItems[_.findIndex(bItems, ['_id', id])].itemQuantity++;
 	return Object.assign({}, backpack, {
@@ -56,8 +64,12 @@ export default function(state = {}, action) {
 	let updatedState;
 
 	switch (action.type) {
+		case ADD_EXISTINGITEM_TO_BACKPACK:
+			//console.log('backpackReducer_ADD_EXISTINGITEM_TOBACKPACK');
+			updatedState = addExistingItem(state, action.payload);
+			return updatedState;
 		case ADD_ITEM_TO_BACKPACK:
-			//console.log('backpackReducer_ADD_ITEM_TBACKPACK');
+			//console.log('backpackReducer_ADD_ITEM_TOBACKPACK');
 			updatedState = addItem(state, action.payload);
 			return updatedState;
 		case DEL_ITEM_FROM_BACKPACK:
@@ -73,16 +85,16 @@ export default function(state = {}, action) {
 			updatedState = reCalculate(state, items);
 			return updatedState;
 		case DISCARD_BACKPACK:
-			console.log('backpackReducer_DISCARD_BACKPACK', action.payload);
+			//console.log('backpackReducer_DISCARD_BACKPACK', action.payload);
 			return state;
 		case SAVE_BACKPACK:
-			console.log('backpackReducer_SAVE_BACKPACK', action.payload);
+			//console.log('backpackReducer_SAVE_BACKPACK', action.payload);
 			return state;
 		case CHECKOUT_BACKPACK:
-			console.log('backpackReducer_CHECKOUT_BACKPACK', action.payload);
+			//console.log('backpackReducer_CHECKOUT_BACKPACK', action.payload);
 			return state;
 		case FETCH_BACKPACK_SUCCESS:
-			console.log('backpackReducer_FETCH_BACKPACK_SUCCESS', action);
+			//console.log('backpackReducer_FETCH_BACKPACK_SUCCESS', action);
 			return action.backpack;
 		default:
 			return state;

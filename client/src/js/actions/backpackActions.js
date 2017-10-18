@@ -1,7 +1,9 @@
+import _ from 'lodash';
 import axios from 'axios';
 
 import {
 	ADD_ITEM_TO_BACKPACK,
+	ADD_EXISTINGITEM_TO_BACKPACK,
 	DEL_ITEM_FROM_BACKPACK,
 	REMOVE_ITEM_FROM_BACKPACK,
 	RECALCULATE_TOTAL_PRICE,
@@ -15,7 +17,7 @@ import {
 } from './types';
 
 export const fetchBackpack = () => async (dispatch, getState) => {
-	console.log('_action_fetchBackpack_state', getState());
+	//console.log('_action_fetchBackpack_state', getState());
 	const state = getState();
 	const id = state.user._id;
 	dispatch(BackpackIsLoading(true));
@@ -24,7 +26,7 @@ export const fetchBackpack = () => async (dispatch, getState) => {
 	if (!res.data.backpack) {
 		dispatch(BackpackHasErrored(true));
 	}
-	console.log('_action_fetchBackpack_Got user backpack', res.data.backpack);
+	//console.log('_action_fetchBackpack_Got user backpack', res.data.backpack);
 	dispatch(FetchBackpackSuccess(res.data.backpack));
 	dispatch(BackpackLoaded(true));
 	//dispatch({ type: FETCH_BACKPACK, payload: res.data.backpack });
@@ -32,9 +34,22 @@ export const fetchBackpack = () => async (dispatch, getState) => {
 
 // };
 
-export const addItemToBackpack = id => dispatch => {
+export const addItemToBackpack = id => (dispatch, getState) => {
 	//console.log('_action_addItemToBackpack ', id);
-	dispatch({ type: ADD_ITEM_TO_BACKPACK, payload: id });
+	let existing = false;
+	const existingItems = getState().backpack.items;
+	if (_.findIndex(existingItems, ['_id', id]) >= 0) existing = true;
+	if (existing) {
+		dispatch({
+			type: ADD_EXISTINGITEM_TO_BACKPACK,
+			payload: id
+		});
+	} else {
+		dispatch({
+			type: ADD_ITEM_TO_BACKPACK,
+			payload: { _id: id, itemQuantity: 1 }
+		});
+	}
 };
 export const delItemFromBackpack = id => dispatch => {
 	//console.log('_action_delItemFromBackpack ', id);
@@ -54,12 +69,12 @@ export const recalcutateTotalPrice = () => (dispatch, getState) => {
 	});
 };
 export const discardBackpack = id => async dispatch => {
-	console.log('_action_discardBackpack');
+	//console.log('_action_discardBackpack');
 	const res = await axios.get(`/api/backpacks/${id}/del`);
 	dispatch({ type: DISCARD_BACKPACK, payload: res });
 };
 export const saveBackpack = backpack => async dispatch => {
-	console.log('_action_saveBackpack');
+	//console.log('_action_saveBackpack');
 	const res = await axios.post(
 		`/api/backpacks/${backpack._id}/update`,
 		backpack
@@ -67,7 +82,7 @@ export const saveBackpack = backpack => async dispatch => {
 	dispatch({ type: SAVE_BACKPACK, payload: res });
 };
 export const checkoutBackpack = id => dispatch => {
-	console.log('_action_checkoutBackpack');
+	//console.log('_action_checkoutBackpack');
 	const res = 'checked out';
 	dispatch({ type: CHECKOUT_BACKPACK, payload: res });
 };

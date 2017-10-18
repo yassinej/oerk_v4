@@ -41,7 +41,7 @@ module.exports = app => {
 		Authentication.requireLogin,
 		async (req, res) => {
 			const id = req.params.id;
-			console.log('Id is:', id);
+			//console.log('Id is:', id);
 			try {
 				const deletedBackpack = await Backpack.remove({ _id: id });
 				if (!deletedBackpack)
@@ -58,7 +58,7 @@ module.exports = app => {
 		Authentication.requireLogin,
 		async (req, res) => {
 			const id = req.params.id;
-			console.log('Id is:', id);
+			//console.log('Id is:', id);
 			try {
 				const fetchedBackpack = await Backpack.findOne({ user_id: id });
 				if (!fetchedBackpack)
@@ -78,7 +78,7 @@ module.exports = app => {
 		Authentication.requireLogin,
 		async (req, res) => {
 			const id = req.params.id;
-			console.log('Id is:', id);
+			//console.log('Id is:', id);
 			try {
 				const fetchedBackpack = await Backpack.findOne({ _id: id });
 				if (!fetchedBackpack)
@@ -98,10 +98,10 @@ module.exports = app => {
 		'/api/backpacks/:id/update',
 		Authentication.requireLogin,
 		async (req, res) => {
-			console.log(req);
+			//console.log(req);
 			const id = req.params.id;
 			const backpack = req.body;
-			console.log('Id is:', id);
+			//console.log('Id is:', id);
 			try {
 				const updatedBackpack = await Backpack.findOneAndUpdate(
 					{ _id: id },

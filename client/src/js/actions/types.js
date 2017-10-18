@@ -13,6 +13,7 @@ export const ITEMS_LOADED = 'items_loaded';
 //backpack
 
 export const ADD_ITEM_TO_BACKPACK = 'add_item_from_backpack';
+export const ADD_EXISTINGITEM_TO_BACKPACK = 'add_existing_item_from_backpack';
 export const DEL_ITEM_FROM_BACKPACK = 'del_item_from_backpack';
 export const REMOVE_ITEM_FROM_BACKPACK = 'remove_item_from_backpack';
 export const RECALCULATE_TOTAL_PRICE = 'recalculate_totalprice';
