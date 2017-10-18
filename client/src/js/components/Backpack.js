@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import * as actions from '../actions/backpackActions';
+import * as actions from '../actions/backpackActions';
 
 class Backpack extends Component {
 	handleAddItem(id) {
@@ -129,4 +129,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(mapStateToProps)(Backpack);
+export default connect(mapStateToProps, actions)(Backpack);
