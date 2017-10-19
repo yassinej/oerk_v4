@@ -4,6 +4,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const keys = require('../config/keys');
 User = mongoose.model('users');
+Backpack = mongoose.model('backpack');
 
 module.exports = function(passport) {
 	// required for persistent login sessions
@@ -60,6 +61,12 @@ module.exports = function(passport) {
 							} else {
 								const newUser = new User();
 
+								const newBackpack = new Backpack({ user_id: newUser._id });
+								newBackpack.save(err => {
+									if (err) return done(err);
+
+									return done(null, newUser);
+								});
 								newUser.googleId = profile.id;
 								newUser.googleToken = token;
 								newUser.name = profile.displayName;

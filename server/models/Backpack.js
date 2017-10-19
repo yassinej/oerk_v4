@@ -17,8 +17,8 @@ const backpackSchema = mongoose.Schema({
 		}
 	],
 	rentalStart: Date,
-	rentalDuration: Number,
-	totalPrice: Number,
+	rentalDuration: { type: Number, default: 0 },
+	totalPrice: { type: Number, default: 0 },
 	checkedOut: { type: Boolean, default: false },
 	checkedOutDate: Date
 });
