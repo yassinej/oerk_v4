@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/backpackActions';
 import imageURL from '../../assets/backpack.png';
+import Backpack from './Backpack';
 
 class ItemList extends Component {
 	handlePlusOne(id) {
@@ -72,6 +73,7 @@ class ItemList extends Component {
 	render() {
 		return (
 			<div>
+				<Backpack />
 				<h1>Items List</h1>
 				{this.renderItems()}
 			</div>

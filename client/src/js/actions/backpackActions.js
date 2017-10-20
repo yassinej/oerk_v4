@@ -13,7 +13,8 @@ import {
 	BACKPACK_IS_LOADING,
 	BACKPACK_HAS_ERRORED,
 	FETCH_BACKPACK_SUCCESS,
-	BACKPACK_LOADED
+	BACKPACK_LOADED,
+	RENTAL_DURATION_BACKPACK
 } from './types';
 
 export const fetchBackpack = () => async (dispatch, getState) => {
@@ -85,9 +86,12 @@ export const saveBackpack = backpack => async dispatch => {
 	dispatch({ type: SAVE_BACKPACK, payload: res });
 };
 export const checkoutBackpack = id => dispatch => {
+	dispatch({ type: CHECKOUT_BACKPACK, payload: true });
+};
+export const changeRentalDuration = value => dispatch => {
 	//console.log('_action_checkoutBackpack');
-	const res = 'checked out';
-	dispatch({ type: CHECKOUT_BACKPACK, payload: res });
+
+	dispatch({ type: RENTAL_DURATION_BACKPACK, payload: value });
 };
 export function BackpackHasErrored(bool) {
 	return {

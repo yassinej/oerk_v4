@@ -28,6 +28,9 @@ class Backpack extends Component {
 	handleCheckout(id) {
 		this.props.checkoutBackpack(id);
 	}
+	handleDate(e) {
+		this.props.changeRentalDuration(e.target.value);
+	}
 	renderItems() {
 		if (!this.props.backpack) {
 			return (
@@ -76,7 +79,15 @@ class Backpack extends Component {
 				<div>
 					<h4>
 						{this.props.backpack.totalPrice}€ for{' '}
-						{this.props.backpack.rentalDuration} days
+						<select
+							onChange={this.handleDate.bind(this)}
+							value={this.props.backpack.rentalDuration}
+						>
+							<option>1</option>
+							<option>5</option>
+							<option>10</option>
+						</select>{' '}
+						days
 					</h4>
 					<button onClick={this.handleRecalculate.bind(this)}>
 						ReCalculate

@@ -36,7 +36,6 @@ class App extends Component {
 					<LocatedNavHeading />
 					<Route exact path="/" component={Landing} />
 					<Route path="/items" component={ItemList} />
-					<Route path="/backpack" component={Backpack} />
 				</div>
 			</Router>
 		);

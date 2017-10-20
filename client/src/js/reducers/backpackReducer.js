@@ -11,7 +11,8 @@ import {
 	CHECKOUT_BACKPACK,
 	BACKPACK_IS_LOADING,
 	BACKPACK_HAS_ERRORED,
-	FETCH_BACKPACK_SUCCESS
+	FETCH_BACKPACK_SUCCESS,
+	RENTAL_DURATION_BACKPACK
 } from '../actions/types';
 
 function addItem(backpack, item) {
@@ -42,9 +43,6 @@ function removeItem(backpack, id) {
 		items: bItems
 	});
 }
-function removeBackpack() {
-	return Object.assign({}, backpack, {});
-}
 
 function reCalculate(backpack, allItems) {
 	let newTotalPrice = 0;
@@ -59,7 +57,12 @@ function reCalculate(backpack, allItems) {
 		totalPrice: newTotalPrice
 	});
 }
-
+function checkout(state) {
+	return Object.assign({}, state, { checkedOut: true });
+}
+function changeDuration(state, duration) {
+	return Object.assign({}, state, { rentalDuration: duration });
+}
 export default function(state = {}, action) {
 	let updatedState;
 
@@ -83,6 +86,9 @@ export default function(state = {}, action) {
 		case RECALCULATE_TOTAL_PRICE:
 			const { items } = action;
 			updatedState = reCalculate(state, items);
+			return updatedState;
+		case RENTAL_DURATION_BACKPACK:
+			updatedState = changeDuration(state, action.payload);
 			return updatedState;
 		case DISCARD_BACKPACK:
 			//console.log('backpackReducer_DISCARD_BACKPACK', action.payload);

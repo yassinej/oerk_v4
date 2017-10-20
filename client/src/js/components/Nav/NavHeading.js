@@ -9,7 +9,7 @@ class NavHeading extends Component {
 		this.props.signOutUser();
 	}
 	renderLogin() {
-		console.log(this.props);
+		//console.log(this.props);
 		if (!this.props.auth.authenticated) {
 			return (
 				<button>
