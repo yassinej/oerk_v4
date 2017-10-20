@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
-import * as actions from '../../actions';
+import * as actions from '../../actions/userActions';
 import logo from '../../../assets/backpack.png';
 
 class NavHeading extends Component {
+	handleSignOut() {
+		this.props.signOutUser();
+	}
 	renderLogin() {
-		if (!this.props.user) {
+		console.log(this.props);
+		if (!this.props.auth.authenticated) {
 			return (
 				<button>
 					<a href="/auth/google">SignIn with Google</a>
@@ -21,7 +25,7 @@ class NavHeading extends Component {
 					</li>
 				</ul>
 				<button>
-					<a href="/api/logout">SignOut</a>
+					<a onClick={this.handleSignOut.bind(this)}>SignOut</a>
 				</button>
 			</div>
 		);
@@ -51,6 +55,9 @@ class NavHeading extends Component {
 	}
 }
 function mapStateToProps(state) {
-	return { user: state.user };
+	return {
+		auth: state.auth,
+		user: state.user
+	};
 }
 export default connect(mapStateToProps, actions)(NavHeading);

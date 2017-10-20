@@ -24,3 +24,8 @@ export const BACKPACK_HAS_ERRORED = 'backpack_has_errored';
 export const BACKPACK_IS_LOADING = 'backpack_is_loading';
 export const FETCH_BACKPACK_SUCCESS = 'fetch_backpack_success';
 export const BACKPACK_LOADED = 'backpack_loaded';
+
+//AUTH
+
+export const USER_AUTH = 'user_auth';
+export const USER_UNAUTH = 'user_unauth';

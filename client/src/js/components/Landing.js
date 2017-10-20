@@ -12,12 +12,6 @@ class Landing extends Component {
 					<div>Step2</div>
 					<div>Step3</div>
 				</div>
-				<div>
-					<h2>Get Started</h2>
-					<button>
-						<a href="/auth/google">SignIn with Google</a>
-					</button>
-				</div>
 			</div>
 		);
 	}

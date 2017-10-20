@@ -4,20 +4,46 @@ import {
 	USER_IS_LOADING,
 	USER_LOADED,
 	USER_HAS_ERRORED,
-	FETCH_USER_SUCCESS
+	FETCH_USER_SUCCESS,
+	USER_AUTH,
+	USER_UNAUTH
 } from './types';
 
 export const fetchUser = () => async dispatch => {
 	dispatch(UserIsLoading(true));
+	//console.log('check user');
 	const res = await axios.get('/api/current_user');
 	dispatch(UserIsLoading(false));
 	if (!res.data) {
 		dispatch(UserHasErrored(true));
+	} else {
+		//console.log('_action_fetchUser_Got user ', res.data);
+		dispatch(FetchUserSuccess(res.data));
+		dispatch(UserLoaded(true));
 	}
-	//console.log('_action_fetchUser_Got user ', res.data);
-	dispatch(FetchUserSuccess(res.data));
-	dispatch(UserLoaded(true));
+
+	if (res.data.googleToken) {
+		//console.log('user authenticated');
+		dispatch(UserAuth());
+	}
 };
+
+export const signOutUser = () => async dispatch => {
+	const res = await axios.get('/api/logout');
+	dispatch(UserUnAuth());
+};
+export function UserAuth() {
+	return {
+		type: USER_AUTH,
+		authenticated: true
+	};
+}
+export function UserUnAuth() {
+	return {
+		type: USER_UNAUTH,
+		authenticated: false
+	};
+}
 
 export function UserHasErrored(bool) {
 	return {

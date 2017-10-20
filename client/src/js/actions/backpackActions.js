@@ -19,16 +19,19 @@ import {
 export const fetchBackpack = () => async (dispatch, getState) => {
 	//console.log('_action_fetchBackpack_state', getState());
 	const state = getState();
+	const auth = state.auth.authenticated;
 	const id = state.user._id;
-	dispatch(BackpackIsLoading(true));
-	const res = await axios.get(`/api/backpacks/user/${id}`);
-	dispatch(BackpackIsLoading(false));
-	if (!res.data.backpack) {
-		dispatch(BackpackHasErrored(true));
+	if (auth) {
+		dispatch(BackpackIsLoading(true));
+		const res = await axios.get(`/api/backpacks/user/${id}`);
+		dispatch(BackpackIsLoading(false));
+		if (!res.data.backpack) {
+			dispatch(BackpackHasErrored(true));
+		}
+		//console.log('_action_fetchBackpack_Got user backpack', res.data.backpack);
+		dispatch(FetchBackpackSuccess(res.data.backpack));
+		dispatch(BackpackLoaded(true));
 	}
-	//console.log('_action_fetchBackpack_Got user backpack', res.data.backpack);
-	dispatch(FetchBackpackSuccess(res.data.backpack));
-	dispatch(BackpackLoaded(true));
 	//dispatch({ type: FETCH_BACKPACK, payload: res.data.backpack });
 };
 
