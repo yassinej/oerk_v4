@@ -54,16 +54,13 @@ class ItemList extends Component {
 					<h3>{item.name}</h3>
 					<div>
 						<button onClick={this.handlePlusOne.bind(this, item._id)}>
-							{' '}
-							+{' '}
+							<i className="fa fa-plus-square" aria-hidden="true" />
 						</button>
 						<button onClick={this.handleMinusOne.bind(this, item._id)}>
-							{' '}
-							-{' '}
+							<i className="fa fa-minus-square" aria-hidden="true" />
 						</button>
 						<button onClick={this.handleBinOne.bind(this, item._id)}>
-							{' '}
-							bin{' '}
+							<i className="fa fa-trash" aria-hidden="true" />
 						</button>
 					</div>
 				</div>

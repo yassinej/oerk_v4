@@ -61,13 +61,13 @@ class Backpack extends Component {
 				<td>{price}</td>
 				<td>
 					<button onClick={this.handleAddItem.bind(this, item._id)}>
-						More
+						<i className="fa fa-plus-square" aria-hidden="true" />
 					</button>
 					<button onClick={this.handleDelItem.bind(this, item._id)}>
-						Less
+						<i className="fa fa-minus-square" aria-hidden="true" />
 					</button>
 					<button onClick={this.handleRemoveItem.bind(this, item._id)}>
-						Remove
+						<i className="fa fa-trash" aria-hidden="true" />
 					</button>
 				</td>
 			</tr>
