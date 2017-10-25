@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, withRouter } from 'react-router-dom';
 import history from '../helpers/history';
-
-import NavHeading from './Nav/NavHeading';
+import Header from './Nav/Header';
+import Footer from './Nav/Footer';
 import Landing from './Landing';
 import ItemList from './ItemList';
-import Backpack from './Backpack';
+
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions/userActions';
 import { fetchItems } from '../actions/itemsActions';
 import { fetchBackpack } from '../actions/backpackActions';
 //Allows NavBar to access Location. Useful for Active class
-const LocatedNavHeading = withRouter(NavHeading);
 
+const LocatedHeader = withRouter(Header);
 class App extends Component {
 	componentWillReceiveProps(nextProps) {
 		//console.log('nextprops ', nextProps);
@@ -32,10 +32,11 @@ class App extends Component {
 	render() {
 		return (
 			<Router history={history}>
-				<div>
-					<LocatedNavHeading />
+				<div className="container-fluid p-0">
+					<LocatedHeader />
 					<Route exact path="/" component={Landing} />
 					<Route path="/items" component={ItemList} />
+					<Footer />
 				</div>
 			</Router>
 		);

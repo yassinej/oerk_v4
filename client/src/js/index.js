@@ -8,6 +8,7 @@ import App from './components/App';
 import rootReducer from './reducers';
 
 import 'bootstrap';
+
 let store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
 
 render(

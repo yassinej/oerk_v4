@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/backpackActions';
-import imageURL from '../../assets/backpack.png';
+import imageURL from '../../assets/item.jpg';
 import Backpack from './Backpack';
 
 class ItemList extends Component {
@@ -28,51 +28,91 @@ class ItemList extends Component {
 	renderItem(item) {
 		return (
 			<div
-				style={{
-					margin: '5px',
-					border: '1px solid #ccc',
-					float: 'left',
-					width: '180px'
-				}}
 				key={item._id}
+				className=" col-sm-6 col-md-3 py-3"
+				style={{
+					textAlign: 'center'
+				}}
 			>
-				<img
-					src={imageURL}
-					width="300"
-					height="200"
-					style={{
-						width: '100%',
-						height: 'auto'
-					}}
-				/>
-				<div
-					style={{
-						padding: '15px',
-						textAlign: 'center'
-					}}
-				>
-					<h3>{item.name}</h3>
-					<div>
-						<button onClick={this.handlePlusOne.bind(this, item._id)}>
-							<i className="fa fa-plus-square" aria-hidden="true" />
-						</button>
-						<button onClick={this.handleMinusOne.bind(this, item._id)}>
-							<i className="fa fa-minus-square" aria-hidden="true" />
-						</button>
-						<button onClick={this.handleBinOne.bind(this, item._id)}>
-							<i className="fa fa-trash" aria-hidden="true" />
-						</button>
-					</div>
+				<img className="img-fluid img-thumbnail" src={imageURL} />
+				<div>
+					<span className="text-dark">{item.name}</span>
 				</div>
+				<div>
+					<span className="text-info">{item.price}€/day</span>
+				</div>
+
+				<button
+					className="btn btn-dark"
+					onClick={this.handlePlusOne.bind(this, item._id)}
+				>
+					<i className="fa fa-plus-square" aria-hidden="true" />
+				</button>
+
+				<button
+					className="btn btn-secondary "
+					onClick={this.handleMinusOne.bind(this, item._id)}
+				>
+					<i className="fa fa-minus-square" aria-hidden="true" />
+				</button>
 			</div>
 		);
 	}
 	render() {
 		return (
-			<div>
+			<div className="row equal">
+				<div className="col-md-1" />
+				<div className="col-md-8 col-lg-8">
+					<div className="row pt-4 pb-2">
+						<div className="dropdown  mx-auto">
+							<button
+								className="btn btn-dark dropdown-toggle"
+								type="button"
+								id="dropdownMenuButton"
+								data-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="false"
+							>
+								Categories
+							</button>
+							<div
+								className="dropdown-menu"
+								aria-labelledby="dropdownMenuButton"
+							>
+								<a className="dropdown-item" href="#">
+									Action
+								</a>
+								<a className="dropdown-item" href="#">
+									Another action
+								</a>
+								<a className="dropdown-item" href="#">
+									Something else here
+								</a>
+							</div>
+						</div>
+						<div
+							className="btn-group  mx-auto"
+							role="group"
+							aria-label="Basic example"
+						>
+							<button type="button" className="btn btn-info">
+								<i className="fa fa-th-large" aria-hidden="true" /> Grid
+							</button>
+							<button type="button" className="btn btn-warning">
+								<i className="fa fa-th-list" aria-hidden="true" /> List
+							</button>
+						</div>
+					</div>
+					<hr />
+					<div className="row no-gutters">
+						<div className="container py-2 pr-4">
+							<div className="row text-center mx-auto">
+								{this.renderItems()}
+							</div>
+						</div>
+					</div>
+				</div>
 				<Backpack />
-				<h1>Items List</h1>
-				{this.renderItems()}
 			</div>
 		);
 	}

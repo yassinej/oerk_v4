@@ -55,5 +55,5 @@ require('./routes/backpackRoutes')(app);
 
 //Starting Server
 app.listen(port, function() {
-	//console.log('API Server Listening on port', port);
+	console.log('API Server Listening on port', port);
 });
